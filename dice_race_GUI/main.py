@@ -1,4 +1,5 @@
 import tkinter as t
+import random as rd
 
 def clicked_button() :
     #print("버튼을 눌렀습니다!")
@@ -20,8 +21,14 @@ c.create_image(400,300,image=bg_img01)
 button_font_size = 32
 button1 = t.Button(text="주사위 돌리기",font=("배달의민족 한나체 Pro",button_font_size),bg="skyblue",command=clicked_button)
 button1.place(x=screen_height // 2,y=screen_height-button_font_size-50)
-tx = t.Text(width=40,height=5,font=("배달의민족 한나체 Pro",16))
-tx.place(x=380,y=30)
+text_screen_height = 5
+text_screen_width = 40
+tx = t.Text(width=10,height=0,font=("배달의민족 한나체 Pro",16),bg="pink")
+tx.place(x=text_screen_width,y=screen_height//10)
+
+
+
+
 
 r.mainloop()
 
