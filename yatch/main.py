@@ -30,7 +30,7 @@ def get_dice_data() :
     
     print("최종적으로 선택된 주사위들 :",choosed_dices)
     return choose_count
-def print_can_set_score(possible_section) :
+def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
     #possible_section = [1,1,1,0,1,1,0,0,1,1,1,1]
     '''
     Possible_section
@@ -47,8 +47,16 @@ def print_can_set_score(possible_section) :
     10 : Large Stringt  이어지는 주사위 눈이 5개일때. 고정 30점
     11 : Yacht          동일한 주사위 눈이 5개일때. 고정 50점
     '''
+    prints = ["Aces\t\t1이 나온 주사위 눈의 총합","Deuces\t\t2이 나온 주사위 눈의 총합","Threes\t\t3이 나온 주사위 눈의 총합","Fours\t\t4가 나온 주사위 눈의 총합","Fives\t\t5가 나온 주사위 눈의 총합","Sixes\t\t6이 나온 주사위 눈의 총합","Choice\t\t주사위 눈 5개의 총합. 최대 30점","4 of a Kind\t동일한 주사위 눈이 4개 이상일때, 주사위 눈 5개의 총합. 최대 30점","Full House\t동일한 주사위 눈이 각각 3개, 2개일때, 주사위 눈 5개의 총합. 최대 30점","Small Straight\t이어지는 주사위 눈이 4개 이상일때, 고정 15점","Large Stringt\t이어지는 주사위 눈이 5개일때. 고정 30점","Yacht\t\t동일한 주사위 눈이 5개일때. 고정 50점"]
+    
+    for i in range(len(prints)) :
+        if possible_section[i] == 1 :
+            print(prints[i])
     print()
+    
 round = 12
+
+print_can_set_score()
 for i in range(round) :
     dice_result = get_dice_data()
     
