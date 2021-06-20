@@ -30,6 +30,26 @@ def get_dice_data() :
     
     print("최종적으로 선택된 주사위들 :",choosed_dices)
     return choose_count
+
+def check_able(dice) :
+    #dice = [1,1,1,3,5]
+    possible_section = [1,1,1,1,1,1,1,check_4_of_a_kind()]
+    pass
+    
+
+def check_4_of_a_kind(dice) :
+    for i in range(len(dice)) :
+        base_num = dice[i]
+        stack = 0
+        for j in range(len(dice)) :
+            if dice[j] == base_num :
+                stack += 1
+        if stack >= 4 :
+            return 1
+    return 0
+            
+
+
 def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
     #possible_section = [1,1,1,0,1,1,0,0,1,1,1,1]
     '''
@@ -52,6 +72,7 @@ def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
     for i in range(len(prints)) :
         if possible_section[i] == 1 :
             print(prints[i])
+    
     print()
     
 round = 12
