@@ -1,8 +1,9 @@
 import random as r
+import copy as c
 
 def get_dice_data() :
     left_dice = 5
-    left = 3
+    left = 5
     choosed_dices = []
     for j in range(left) :
         n = []
@@ -11,7 +12,7 @@ def get_dice_data() :
         print("나온 숫자 :",n)
         if left == 0 :
             choosed_dices.extend(n)
-        elif len(n) == 1 and j == left-1 :
+        elif j == left-1 :
             choosed_dices.extend(n)
             left_dice = 0 
         else :
@@ -27,17 +28,18 @@ def get_dice_data() :
                 break
             else :
                 left_dice -= choose_count
+        print("\n")
     
     print("최종적으로 선택된 주사위들 :",choosed_dices)
-    return choose_count
+    return choosed_dices
 
 def check_able(dice) :
-    #dice = [1,1,1,3,5]
-    possible_section = [1,1,1,1,1,1,1,check_4_of_a_kind(dice)]
-    pass
+    return  [1,1,1,1,1,1,1,check_4_of_a_kind(dice),check_full_house(dice),check_small_straight(dice),check_large_straight(dice),check_yacht(dice)]
+    
     
 
 def check_4_of_a_kind(dice) :
+    #print("check_4_of_a_kind dice :",dice)
     for i in range(len(dice)) :
         base_num = dice[i]
         stack = 0
@@ -87,7 +89,42 @@ def check_full_house(dice) :
 def check_small_straight(dice) :
     dice = set(dice) 
     dice = list(dice)
-    print(dice)
+    #print("check_small_straight dice :",dice)
+    base_num = 0
+    stack = 0
+    
+    base_num = c.deepcopy(dice[0])
+    for i in range(len(dice)) :
+        #print("base_num + i :",base_num + i)
+        #print("dice[i] :",dice[i])
+        if base_num + i == dice[i] :
+            stack += 1
+
+    #print("stack 1 :",stack)
+    if stack >= 4 :
+        return 1
+
+    return 0
+
+def check_large_straight(dice) :
+    dice = c.deepcopy(dice)
+    dice = set(dice) 
+    dice = list(dice)
+    #print("check_small_straight dice :",dice)
+    base_num = 0
+    stack = 0
+    
+    base_num = c.deepcopy(dice[0])
+    for i in range(len(dice)) :
+        #print("base_num + i :",base_num + i)
+        #print("dice[i] :",dice[i])
+        if base_num + i == dice[i] :
+            stack += 1
+
+    #print("stack 1 :",stack)
+    if stack >= 5 :
+        return 1
+
     return 0
 
 def check_yacht(dice) :
@@ -132,6 +169,11 @@ round = 12
 print_can_set_score()
 for i in range(round) :
     dice_result = get_dice_data()
+    #print("main dice_result :",dice_result)
+    possible_section = check_able(dice_result)
+    print_can_set_score(possible_section)
+    print("현재 나온 주사위 결과 :",dice_result)
+    
     
 
 

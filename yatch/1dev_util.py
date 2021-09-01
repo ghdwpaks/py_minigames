@@ -1,41 +1,23 @@
-
-def check_full_house(dice) :
-    suba = ""
-    canpass = False
-    for i in range(len(dice)) :
-        base_num = dice[i]
-        stack = 0
-        for j in range(len(dice)) :
-            if dice[j] == base_num :
-                stack += 1
-            if stack >= 3 :
-                suba = str(dice[i])
-                canpass = True
-                #print("suba :",suba)
-                #print("canpass :",canpass)
-                break
-        if canpass :
-            #print("canpass 1 :",canpass)
-            break
+import copy as c
+def check_small_straight(dice) :
+    dice = set(dice) 
+    dice = list(dice)
+    print("check_small_straight dice :",dice)
+    base_num = 0
+    stack = 0
     
-    if canpass :
-        for i in range(len(dice)) :
-            stack = 0
-            base_num = dice[i]
-            if str(base_num) == suba :
-                continue
-            #print("str(base_num) :",str(base_num))
-            #print("suba :",suba)
-            for j in range(len(dice)) :
-                if dice[j] == base_num :
+    base_num = c.deepcopy(dice[0])
+    for i in range(len(dice)) :
+        print("base_num + i :",base_num + i)
+        print("dice[i] :",dice[i])
+        if base_num + i == dice[i] :
+            stack += 1
 
-                    stack += 1
-                if stack >= 2 :
-                    return 1
-    #print('last stack :',stack)
+    print("stack 1 :",stack)
+    if stack >= 4 :
+        return 1
+
     return 0
-
-
-print("[1,1,1,2,2] :",check_full_house([1,1,1,2,2]))
-print("[2,2,2,3,4] :",check_full_house([2,2,2,3,4]))
-print("[2,2,5,3,4] :",check_full_house([2,2,5,3,4]))
+print("[1,1,1,2,2] :",check_small_straight([1,1,1,2,2]))
+print("[2,2,2,3,4] :",check_small_straight([2,2,2,3,4]))
+print("[2,2,5,3,4] :",check_small_straight([2,2,5,3,4]))
