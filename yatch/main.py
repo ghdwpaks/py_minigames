@@ -33,7 +33,7 @@ def get_dice_data() :
 
 def check_able(dice) :
     #dice = [1,1,1,3,5]
-    possible_section = [1,1,1,1,1,1,1,check_4_of_a_kind()]
+    possible_section = [1,1,1,1,1,1,1,check_4_of_a_kind(dice)]
     pass
     
 
@@ -48,6 +48,58 @@ def check_4_of_a_kind(dice) :
             return 1
     return 0
             
+def check_full_house(dice) :
+    suba = ""
+    canpass = False
+    for i in range(len(dice)) :
+        base_num = dice[i]
+        stack = 0
+        for j in range(len(dice)) :
+            if dice[j] == base_num :
+                stack += 1
+            if stack >= 3 :
+                suba = str(dice[i])
+                canpass = True
+                #print("suba :",suba)
+                #print("canpass :",canpass)
+                break
+        if canpass :
+            #print("canpass 1 :",canpass)
+            break
+    
+    if canpass :
+        for i in range(len(dice)) :
+            stack = 0
+            base_num = dice[i]
+            if str(base_num) == suba :
+                continue
+            #print("str(base_num) :",str(base_num))
+            #print("suba :",suba)
+            for j in range(len(dice)) :
+                if dice[j] == base_num :
+
+                    stack += 1
+                if stack >= 2 :
+                    return 1
+    #print('last stack :',stack)
+    return 0
+
+def check_small_straight(dice) :
+    dice = set(dice) 
+    dice = list(dice)
+    print(dice)
+    return 0
+
+def check_yacht(dice) :
+    for i in range(len(dice)) :
+        base_num = dice[i]
+        stack = 0
+        for j in range(len(dice)) :
+            if dice[j] == base_num :
+                stack += 1
+        if stack >= 5 :
+            return 1
+    return 0
 
 
 def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
