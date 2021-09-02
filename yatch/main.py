@@ -139,7 +139,20 @@ def check_yacht(dice) :
     return 0
 
 
+def return_all_sum(dice,num) :
+    res = 0
+    for i in range(len(dice)) :
+        if dice[i] == num :
+            res += num
+    return res
+
+def return_4_of_a_kind() :
+
+    pass
+
 def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
+    global dice_result
+    global  points
     #possible_section = [1,1,1,0,1,1,0,0,1,1,1,1]
     '''
     Possible_section
@@ -160,19 +173,30 @@ def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
     
     for i in range(len(prints)) :
         if possible_section[i] == 1 :
-            print(prints[i])
-    
+            print(str(points[i])+"   "+str(i+1)+"  "+str(prints[i]))
+        
+    print("현재 나온 주사위 결과 :",dice_result)
+    choose = int(input("삽입선택 :"))   
+    if possible_section[choose-1] == 1 :
+        print(prints[choose-1],"에 삽입 에정 확인됨")
+        if choose-1 == 0 or choose-1 == 1 or  choose-1 == 2 or  choose-1 ==3 or  choose-1 == 4 or choose-1 == 5 or choose-1 == 6 or choose-1 == 7  :
+            points[choose-1] = return_all_sum(dice_result,choose)
+        elif choose-1 == 8 :
+            points[choose-1] = 15
+        elif choose-1 == 9 :
+            points[choose-1] = 30
+        elif choose-1 == 10 :
+            points[choose-1] = 50
     print()
     
 round = 12
-
-print_can_set_score()
+points = [0,0,0,0,0,0,0,0,0,0,0,0]
 for i in range(round) :
     dice_result = get_dice_data()
     #print("main dice_result :",dice_result)
     possible_section = check_able(dice_result)
     print_can_set_score(possible_section)
-    print("현재 나온 주사위 결과 :",dice_result)
+    print("\n\n\n\n")
     
     
 
