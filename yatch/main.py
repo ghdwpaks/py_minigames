@@ -34,11 +34,12 @@ def get_dice_data() :
                         left_dice -= choose_count
                     break
                 except :
-                    print("에러남")
+                    #print("에러남")
                     continue
             if exit :
                 break
-        print("탈출함")
+        #
+        #print("탈출함")
         print("\n")
     
     print("최종적으로 선택된 주사위들 :",choosed_dices)
@@ -164,10 +165,10 @@ def return_4_of_a_kind() :
 def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
     global dice_result
     global  points
-    print("현재 점수 :")
-    for i in range(len(points)) :
-        print(str(i+1)+"  "+str(points[i]))
-    print("\n\n")
+    #print("현재 점수 :")
+    #for i in range(len(points)) :
+        #print(str(i+1)+"  "+str(points[i]))
+    #print("\n\n")
     #possible_section = [1,1,1,0,1,1,0,0,1,1,1,1]
     '''
     Possible_section
@@ -193,14 +194,14 @@ def print_can_set_score(possible_section = [0,0,0,0,0,0,0,0,0,0,0,0]) :
     print("현재 나온 주사위 결과 :",dice_result)
     choose = int(input("삽입선택 :"))  
     c_1= choose -1 
-    print("c-1 : ",c_1)
+    #print("c-1 : ",c_1)
     if possible_section[c_1] == 1 :
-        print(prints[c_1],"에 삽입 에정 확인됨")
-        print("c_1 == 6 :",c_1 == 6)
+        #print(prints[c_1],"에 삽입 에정 확인됨")
+        #print("c_1 == 6 :",c_1 == 6)
         if c_1 == 0 or c_1 == 1 or c_1 == 2 or c_1==3 or c_1== 4 or c_1== 5 :
             points[c_1] = return_all_sum(dice_result,choose)
         elif c_1 == 6 or c_1 == 7 or c_1 == 8:
-            print("6 또는 7 또는 8 들어옴")
+            #print("6 또는 7 또는 8 들어옴")
             points[c_1] = sum(dice_result) 
         elif c_1 == 9 :
             points[c_1] = 15
@@ -226,6 +227,6 @@ print("게임이 끝났습니다")
 
 prints = ["Aces\t\t1이 나온 주사위 눈의 총합","Deuces\t\t2이 나온 주사위 눈의 총합","Threes\t\t3이 나온 주사위 눈의 총합","Fours\t\t4가 나온 주사위 눈의 총합","Fives\t\t5가 나온 주사위 눈의 총합","Sixes\t\t6이 나온 주사위 눈의 총합","Choice\t\t주사위 눈 5개의 총합. 최대 30점","4 of a Kind\t동일한 주사위 눈이 4개 이상일때, 주사위 눈 5개의 총합. 최대 30점","Full House\t동일한 주사위 눈이 각각 3개, 2개일때, 주사위 눈 5개의 총합. 최대 30점","Small Straight\t이어지는 주사위 눈이 4개 이상일때, 고정 15점","Large Stringt\t이어지는 주사위 눈이 5개일때. 고정 30점","Yacht\t\t동일한 주사위 눈이 5개일때. 고정 50점"]
 for i in range(len(points)) :
-    print(points[i],"   ",prints[i])
+    print(points[i],"\t",prints[i])
 print("최종 점수는",sum(points),"입니다.")
 
