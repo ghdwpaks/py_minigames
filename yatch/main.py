@@ -5,6 +5,7 @@ def get_dice_data() :
     left_dice = 5
     left = 5
     choosed_dices = []
+    exit = False
     for j in range(left) :
         n = []
         for i in range(left_dice) :
@@ -16,18 +17,28 @@ def get_dice_data() :
             choosed_dices.extend(n)
             left_dice = 0 
         else :
-            choose_count = 0
-            choose = input("주사위 입력(ex:10010) :")
-            choose = list(choose)
-            for k in range(left_dice) :
-                if choose[k] == "1" :
-                    choosed_dices.append(n[k])
-                    choose_count += 1
-            print("선택된 주사위들 :",choosed_dices)
-            if len(n) - choose_count == 0 :
+
+            while True :
+                try :
+                    choose_count = 0
+                    choose = input("주사위 입력(ex:10010) :")
+                    choose = list(choose)
+                    for k in range(left_dice) :
+                        if choose[k] == "1" :
+                            choosed_dices.append(n[k])
+                            choose_count += 1
+                    print("선택된 주사위들 :",choosed_dices)
+                    if len(n) - choose_count == 0 :
+                        exit = True
+                    else :
+                        left_dice -= choose_count
+                    break
+                except :
+                    print("에러남")
+                    continue
+            if exit :
                 break
-            else :
-                left_dice -= choose_count
+        print("탈출함")
         print("\n")
     
     print("최종적으로 선택된 주사위들 :",choosed_dices)
