@@ -1,3 +1,17 @@
+from random import choice
+
+words = []
+f = open("words.txt", 'r')
+while True:
+    line = f.readline()
+    if not line: break
+    words.append(line)
+f.close()
+
+
+#print("words :",words)
+#print("choice(words) :",choice(words))
+
 
 
 STD_INPUT_HANDLE   = -10
@@ -73,19 +87,19 @@ def res_printer(RES) :
     return Answer
 
 
-Word = list("world")
-#print("word :",word)
+Word = list(choice(words).lower()[:5])
+#print("word :",Word)
 
 
 
 set_color(6)
-print("Hello, world!")
+#print("Hello, world!")
 
 set_color(2)
-print("Hello, world!")
+#print("Hello, world!")
 
 set_color(8)
-print("Hello, world!")
+#print("Hello, world!")
 set_color(7)
 
 print("게임을 시작하겠습니다.")
